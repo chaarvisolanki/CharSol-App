@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Recent posts</h2>
+{% for post in posts %}
+  <div class="post">
+    <h3><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></h3>
+    <div class="small">by <a href="{{ url_for('profile', user_id=post.author.id) }}">{{ post.author.name }}</a> — {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+    <p>{{ post.body[:220] }}{% if post.body|length > 220 %}...{% endif %}</p>
+  </div>
+{% else %}
+  <p>No posts yet — be the first to <a href="{{ url_for('create_post') }}">create one</a>.</p>
+{% endfor %}
+{% endblock %}

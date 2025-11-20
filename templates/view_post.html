@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ post.title }}</h2>
+<div class="small">by <a href="{{ url_for('profile', user_id=post.author.id) }}">{{ post.author.name }}</a> — {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+<article>
+  <p>{{ post.body }}</p>
+</article>
+{% endblock %}
